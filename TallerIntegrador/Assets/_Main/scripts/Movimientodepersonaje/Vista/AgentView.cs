@@ -2,25 +2,14 @@ using UnityEngine;
 
 public class AgentView : MonoBehaviour
 {
-    public enum Animations
-
-    {
-        walking,
-        run,
-        pain,
-        heal,
-        idle
-    }
-
     [SerializeField]
     public Animator animator;
-    Animations animations;
-
-
-
-    public void AnimationState()
+    [SerializeField]
+    AgentModel model;
+     void Update()
     {
-
-
+        //animator.SetFloat("velocidad", model._rb.linearVelocity.magnitude);
+        //animator.SetBool("isGrounded", model._estaEnSuelo);
+        //animator.SetFloat("velocidadY", model._rb.linearVelocity.magnitude);
     }
 }
