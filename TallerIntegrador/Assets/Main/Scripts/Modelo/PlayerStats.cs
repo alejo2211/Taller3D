@@ -30,6 +30,10 @@ public class PlayerStats : MonoBehaviour
     {
         chalecoActivo = true;
     }
+    public void QuitarEscudo()
+    {
+        chalecoActivo = false;
+    }
     public void CausarDaño(float amountdaño)
     {
         if (chalecoActivo)
@@ -37,7 +41,7 @@ public class PlayerStats : MonoBehaviour
             return;
         }
         vidaActual -= amountdaño;
-        if (vidaActual <0)
-            vidaActual =0;
+        vidaActual = Mathf.Max(vidaActual, 0);
+
     }
 }

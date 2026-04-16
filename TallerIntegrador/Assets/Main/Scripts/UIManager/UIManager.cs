@@ -14,6 +14,9 @@ public class UIManager : MonoBehaviour
     private PowerUpType selectedPowerUp; // Esta variable guarda qué power-up está elegido actualmente.
 
     [SerializeField] private TMP_Text messageText;
+    [SerializeField] private TMP_Text uImessageText;
+    [SerializeField] private TMP_Text velocidadUIMessageText;
+    [SerializeField] private TMP_Text escudoUIMessageText;
 
     [SerializeField] private TMP_InputField inputField;
 
@@ -41,6 +44,7 @@ public class UIManager : MonoBehaviour
     {
         selectedPowerUp = type;
         messageText.text = "Seleccionado: " + type.ToString();
+     
     }
     private bool ValidarReferencias()
     {
@@ -154,13 +158,18 @@ public class UIManager : MonoBehaviour
                 break;
             case PowerUpType.DamageBoost:
                 messageText.text = "Daño causado : " + value;
+        
                 break;
         }
+    }
+    public void MostrarUI()
+    {
+        uImessageText.text = "vida actual: " + playerStats.vidaActual + "\n";                     
+        velocidadUIMessageText.text = "velocidad actual: " + playerStats.VelocidadActual + "\n";
         
-
-
-
-
-
+    }
+    public void Update()
+    {
+        MostrarUI();
     }
 }

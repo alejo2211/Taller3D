@@ -2,14 +2,27 @@ using UnityEngine;
 
 public class AgentView : MonoBehaviour
 {
-    [SerializeField]
     public Animator animator;
-    [SerializeField]
-    AgentModel model;
-     void Update()
+    
+
+    public void PlayJump()
     {
-        //animator.SetFloat("velocidad", model._rb.linearVelocity.magnitude);
-        //animator.SetBool("isGrounded", model._estaEnSuelo);
-        //animator.SetFloat("velocidadY", model._rb.linearVelocity.magnitude);
+        animator.SetTrigger("Jump");
     }
+    public void SetVelocidad(float velocidad)
+    {
+        animator.SetFloat("velocidad", velocidad);
+    }
+
+    public void SetGrounded(bool grounded)
+    {
+        animator.SetBool("isGrounded", grounded);
+    }
+    public void PlayDeath()
+    {
+        Debug.Log("MURIÓ");
+        animator.SetTrigger("Die");
+    }
+
+
 }

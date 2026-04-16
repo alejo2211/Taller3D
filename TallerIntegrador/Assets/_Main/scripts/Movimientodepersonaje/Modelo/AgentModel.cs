@@ -22,10 +22,30 @@ public class AgentModel : MonoBehaviour
     private float _radioSuelo = 0.2f;
     [SerializeField]
     private LayerMask _sueloLayer;
+    [SerializeField]
+    private PlayerStats _playerStats;
+    [SerializeField]
+    private ParticleSystem sangreParticula;
+    [SerializeField] 
+    private ParticleSystem escudoParticula;
+    
+
 
     public bool _estaEnSuelo;
-    public void Movimineto()
+
+    public void Saltar()
     {
+        _agentView.animator.SetTrigger("Jump");
+        _rb.linearVelocity = new Vector3(
+            _rb.linearVelocity.x,
+            0,
+            _rb.linearVelocity.z
+        );
+        _rb.AddForce(Vector3.up * _fuerzaSalto, ForceMode.Impulse);
+    }
+    public void Caminar()
+    {
+        _agentView.animator.SetFloat("velocidad", _rb.linearVelocity.magnitude);
         float vel2 = _velocidad;
         if (_agentController.runValue > 0)
         {
@@ -43,22 +63,47 @@ public class AgentModel : MonoBehaviour
                 0,
                 _agentController.moveValue.y);
         }
+    }
+    public void Movimineto()
+    {
+       Caminar();
         if (_agentController.jumpPressed && _estaEnSuelo)
         {
-            _rb.linearVelocity = new Vector3(
-                _rb.linearVelocity.x,
-                0,
-                _rb.linearVelocity.z
-            );
-            _rb.AddForce(Vector3.up * _fuerzaSalto, ForceMode.Impulse);
+            Saltar();
+        }
+    }
+
+    public void Morir()
+    {
+        _agentView.PlayDeath();
+       
+        
+    }
+
+    public void RecibirDaño(float daño)
+    { 
+        _playerStats.CausarDaño(daño);
+        if (_playerStats.vidaActual <= 0)
+        {
+            Morir();
+        }
+        if (sangreParticula != null && _playerStats.chalecoActivo == false)
+        {
+            sangreParticula.Play();
+        }
+        if(_playerStats.chalecoActivo)
+        {
+            if (escudoParticula != null)
+            {
+                escudoParticula.Play();
+            }
+            _playerStats.QuitarEscudo();
         }
     }
 
     void Update()
     {
-        _agentView.animator.SetFloat("velocidad", _rb.linearVelocity.magnitude);
         _agentView.animator.SetBool("isGrounded", _estaEnSuelo);
-        _agentView.animator.SetFloat("velocidadY", _rb.linearVelocity.magnitude);
         Movimineto();
     }
     public void SetGrounded(bool value)
