@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AgentModel : MonoBehaviour
 {
@@ -28,11 +30,7 @@ public class AgentModel : MonoBehaviour
     private ParticleSystem sangreParticula;
     [SerializeField] 
     private ParticleSystem escudoParticula;
-    
-
-
     public bool _estaEnSuelo;
-
     public void Saltar()
     {
         _agentView.animator.SetTrigger("Jump");
@@ -75,14 +73,16 @@ public class AgentModel : MonoBehaviour
 
     public void Morir()
     {
+        _rb.velocity = Vector3.zero;
+        _rb.isKinematic = true;
         _agentView.PlayDeath();
-       
-        
+        _agentController.enabled = false;
+        StartCoroutine(MuerteCoroutine());
     }
 
-    public void RecibirDaño(float daño)
+    public void RecibirDaÃ±o(float daÃ±o)
     { 
-        _playerStats.CausarDaño(daño);
+        _playerStats.CausarDaÃ±o(daÃ±o);
         if (_playerStats.vidaActual <= 0)
         {
             Morir();
@@ -99,6 +99,15 @@ public class AgentModel : MonoBehaviour
             }
             _playerStats.QuitarEscudo();
         }
+    }
+    public IEnumerator MuerteCoroutine()
+    {
+        // Espera 3 segundos
+        yield return new WaitForSeconds(2.5f);
+
+        // Reinicia la escena actual
+        Scene escenaActual = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(escenaActual.name);
     }
 
     void Update()
