@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text messageText;
     [SerializeField] private TMP_Text uImessageText;
     [SerializeField] private TMP_Text velocidadUIMessageText;
-    [SerializeField] private TMP_Text escudoUIMessageText;
+    
 
     [SerializeField] private TMP_InputField inputField;
 
@@ -154,7 +154,7 @@ public class UIManager : MonoBehaviour
                 break;
             case PowerUpType.Shield:
                 playerStats.ColocarEscudo(value);
-                messageText.text = " ESCUDO ACTIVADO ";
+                messageText.text = " ESCUDO ACTIVADO "; 
                 break;
             case PowerUpType.DamageBoost:
                 messageText.text = "Daño causado : " + value;

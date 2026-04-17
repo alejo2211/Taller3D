@@ -73,11 +73,20 @@ public class AgentModel : MonoBehaviour
 
     public void Morir()
     {
-        _rb.velocity = Vector3.zero;
+        _rb.linearVelocity = Vector3.zero;
         _rb.isKinematic = true;
         _agentView.PlayDeath();
         _agentController.enabled = false;
         StartCoroutine(MuerteCoroutine());
+    }
+    public void Curar(float cantidad)
+    {
+        _playerStats.Vida(10);
+    }
+
+    public void VelocidadX2()
+    {
+        _playerStats.MultiplicarVelocidad(100);
     }
 
     public void RecibirDaño(float daño)

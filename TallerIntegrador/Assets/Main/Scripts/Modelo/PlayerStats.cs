@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour
     public void QuitarEscudo()
     {
         chalecoActivo = false;
+
     }
     public void CausarDaño(float amountdaño)
     {
