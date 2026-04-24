@@ -3,8 +3,6 @@ using UnityEngine;
 public class AgentView : MonoBehaviour
 {
     public Animator animator;
-    
-
     public void PlayJump()
     {
         animator.SetTrigger("Jump");

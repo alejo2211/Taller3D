@@ -1250,6 +1250,7 @@ MonoBehaviour:
   _agentTrasnform: {fileID: 1630506420}
   _velocidadCorrer: 5
   _fuerzaSalto: 5
+  _groundCheck: {fileID: 466108903}
   _sueloLayer:
     serializedVersion: 2
     m_Bits: 8
