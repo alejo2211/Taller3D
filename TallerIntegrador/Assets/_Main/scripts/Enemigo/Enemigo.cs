@@ -16,7 +16,7 @@ public class Enemigo : MonoBehaviour
     public Transform target;
     public bool autoseleccionarTarget = true; 
 
-    private void Awake()
+    public void Awake()
     {
         if (autoseleccionarTarget)
           target = GameObject.FindGameObjectWithTag("Player").transform;
