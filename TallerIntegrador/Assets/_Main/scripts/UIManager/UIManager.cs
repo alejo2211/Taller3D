@@ -144,9 +144,11 @@ public class UIManager : MonoBehaviour
     }
     public void MostrarUI()
     {
-        BarradeVida.fillAmount = playerStats.vidaActual / playerStats.vidaMaxima;
-        
-        
+        BarradeVida.fillAmount = playerStats.vidaActual / playerStats.vidaMaxima;  
+    }
+    public void MostrarMensaje(string mensaje)
+    {
+        messageText.text = mensaje;
     }
     public void Update()
     {

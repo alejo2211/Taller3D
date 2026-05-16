@@ -36,6 +36,7 @@ public class PlayerStats : MonoBehaviour
     {
         chalecoActivo = true; // El chaleco se activa, lo que significa que el jugador no recibirá daño mientras el chaleco esté activo. El multiplicado no tiene un efecto directo en el funcionamiento del chaleco, pero podría ser utilizado para ajustar la duración o la resistencia del chaleco si se implementa esa funcionalidad adicional en el futuro.
     }
+
     public void QuitarEscudo() // Desactiva el chaleco, lo que hace que el jugador vuelva a recibir daño normalmente
     {
         chalecoActivo = false; //

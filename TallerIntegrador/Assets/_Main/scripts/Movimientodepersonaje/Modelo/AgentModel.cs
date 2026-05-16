@@ -28,6 +28,8 @@ public class AgentModel : MonoBehaviour
     [SerializeField] 
     private ParticleSystem escudoParticula;
     public bool _estaEnSuelo;
+    [SerializeField]
+    private UIManager _uiManager;
     public void Saltar() // Este método se encarga de aplicar una fuerza hacia arriba para que el personaje salte, además de activar la animación de salto.
 
     {
@@ -108,8 +110,17 @@ public class AgentModel : MonoBehaviour
                 escudoParticula.Play(); // Reproduce partículas de escudo si el jugador recibe daño con el chaleco activo
             }
             _playerStats.QuitarEscudo(); // El chaleco se desactiva después de absorber un golpe, lo que significa que el jugador solo puede bloquear un ataque con el chaleco antes de que se rompa
+            _uiManager.MostrarMensaje("¡El escudo se ha roto!");
+
         }
     }
+    public void ActivarEscudo()
+    {
+        _playerStats.ColocarEscudo(1);
+
+        _uiManager.MostrarMensaje("🛡️ Escudo activado");
+    }
+
     public IEnumerator MuerteCoroutine() // Esta corrutina se encarga de esperar un tiempo después de la muerte del jugador antes de reiniciar la escena, lo que permite que se reproduzca la animación de muerte y cualquier efecto visual asociado antes de que la escena se reinicie
     {
         // Espera 3 segundos
