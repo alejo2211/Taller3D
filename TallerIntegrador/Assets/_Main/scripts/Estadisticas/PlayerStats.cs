@@ -24,7 +24,13 @@ public class PlayerStats : MonoBehaviour
     }
     public void MultiplicarVelocidad(float multiplicado)
     {
+        print("Resuelto");
         VelocidadActual = VelocidadBase * multiplicado; // Multiplica la velocidad base por un factor dado
+
+    }
+    public void ResetearVelocidad()
+    {
+        VelocidadActual = VelocidadBase; // Restablece la velocidad actual a la velocidad base
     }
     public void ColocarEscudo(float multiplicado) // Activa el chaleco, lo que hace que el jugador no reciba daño mientras el chaleco esté activo
     {

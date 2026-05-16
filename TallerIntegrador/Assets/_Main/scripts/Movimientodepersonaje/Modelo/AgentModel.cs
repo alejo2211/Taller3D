@@ -6,8 +6,7 @@ public class AgentModel : MonoBehaviour
 {
     [SerializeField]
     private AgentController _agentController;
-    [SerializeField]
-    private float _velocidad = 20f;
+
     [SerializeField]
     public Rigidbody _rb;
     [SerializeField]
@@ -23,7 +22,7 @@ public class AgentModel : MonoBehaviour
     [SerializeField]
     private LayerMask _sueloLayer;
     [SerializeField]
-    private PlayerStats _playerStats;
+    public PlayerStats _playerStats;
     [SerializeField]
     private ParticleSystem sangreParticula;
     [SerializeField] 
@@ -44,7 +43,7 @@ public class AgentModel : MonoBehaviour
 
     {
         _agentView.animator.SetFloat("velocidad", _rb.linearVelocity.magnitude); // Actualiza la animación según la velocidad real
-        float vel2 = _velocidad;
+        float vel2 = _playerStats.VelocidadActual;
         if (_agentController.runValue > 0)
         {
             vel2 = _velocidadCorrer; // Decide si el jugador camina o corre
@@ -86,7 +85,9 @@ public class AgentModel : MonoBehaviour
 
     public void VelocidadX2()
     {
-        _playerStats.MultiplicarVelocidad(100);
+        print("multiplicado");
+        _playerStats.MultiplicarVelocidad(2);
+
     }
 
     public void RecibirDaño(float daño) // Reduce la vida y verifica si el jugador muere, además de reproducir partículas de sangre o escudo según corresponda

@@ -4,7 +4,7 @@ public class DetectorSuelo : MonoBehaviour
 
 {
     public AgentModel model;
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Suelo"))
         {
